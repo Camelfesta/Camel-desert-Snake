@@ -71,6 +71,10 @@
         const gridSize = 20;
         const tileCount = canvas.width / gridSize;
 
+        // Emojis
+        const camelEmoji = "🐪";
+        const palmTreeEmoji = "🌴";
+
         // Game variables
         let camel = [
             {x: 10, y: 10},
@@ -109,30 +113,14 @@
         }
 
         function drawCamel() {
+            ctx.font = "bold 16px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
             camel.forEach((part, index) => {
-                if (index === 0) {
-                    // Camel Head (Darker Brown, distinct shape)
-                    ctx.fillStyle = "#8b5a2b";
-                    ctx.fillRect(part.x * gridSize, part.y * gridSize, gridSize - 2, gridSize - 2);
-                    
-                    // Small eye
-                    ctx.fillStyle = "#ffffff";
-                    ctx.fillRect(part.x * gridSize + 12, part.y * gridSize + 4, 3, 3);
-                } else {
-                    // Camel Humps / Body (Alternating textures or lighter brown)
-                    ctx.fillStyle = index % 2 === 0 ? "#a06d3b" : "#b37d4a";
-                    
-                    // Draw rounded top to look like a hump
-                    ctx.beginPath();
-                    ctx.arc(
-                        part.x * gridSize + gridSize/2, 
-                        part.y * gridSize + gridSize/2, 
-                        gridSize/2 - 1, 
-                        0, 
-                        2 * Math.PI
-                    );
-                    ctx.fill();
-                }
+                const x = part.x * gridSize + gridSize / 2;
+                const y = part.y * gridSize + gridSize / 2;
+                ctx.fillText(camelEmoji, x, y);
             });
         }
 
@@ -151,24 +139,13 @@
         }
 
         function drawFood() {
-            // Drawing a Palm Branch / Leaf
-            ctx.fillStyle = "#2e7d32"; // Deep green
+            ctx.font = "bold 16px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
             
-            let cx = food.x * gridSize + gridSize / 2;
-            let cy = food.y * gridSize + gridSize / 2;
-
-            // Draw a stylized leaf shape
-            ctx.beginPath();
-            ctx.ellipse(cx, cy, 8, 4, Math.PI / 4, 0, 2 * Math.PI);
-            ctx.fill();
-            
-            // Stem
-            ctx.strokeStyle = "#1b5e20";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx - 6, cy + 6);
-            ctx.lineTo(cx + 6, cy - 6);
-            ctx.stroke();
+            const x = food.x * gridSize + gridSize / 2;
+            const y = food.y * gridSize + gridSize / 2;
+            ctx.fillText(palmTreeEmoji, x, y);
         }
 
         function generateFood() {
