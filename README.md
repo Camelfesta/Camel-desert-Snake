@@ -232,4 +232,19 @@
                 dx = -1;
                 dy = 0;
             }
-            if ((keyPressed === UP_KEY || keyPressed
+            if ((keyPressed === UP_KEY || keyPressed === W_KEY) && !goingDown) {
+                dx = 0;
+                dy = -1;
+            }
+            if ((keyPressed === RIGHT_KEY || keyPressed === D_KEY) && !goingLeft) {
+                dx = 1;
+                dy = 0;
+            }
+            if ((keyPressed === DOWN_KEY || keyPressed === S_KEY) && !goingUp) {
+                dx = 0;
+                dy = 1;
+            }
+        }
+    </script>
+</body>
+</html>
